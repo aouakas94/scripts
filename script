@@ -1,0 +1,13 @@
+#!/bin/bash
+echo azul
+nom=aouakas
+echo ${nom^^}
+echo ${nom/oua/w}
+echo ${nom:4:2}
+echo {a..z}
+AGE=31
+echo $AGE
+echo "${#AGE}"
+un=1
+deux=2
+echo 1+2+=$(($un+$deux))

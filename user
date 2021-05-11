@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if test $# -lt 4 ; then
+
+        echo "----veuillez entrer tout les arguments et respecter l'ordre (user ip mdp port)------"
+exit
+
+fi
+     ping -c2 $2
+
+if test $? eq 1; then
+
+        echo "-------------- pas de connection avec $2 ------------- "
+
+else	
+echo "-------------- liste des machine qui connecté a $2 ----------" ;
+       echo w | sshpass -p $3 ssh $1@$2 -p $4 
+ 
+fi
+

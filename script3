@@ -1,0 +1,7 @@
+echo bonjour 
+ 
+liste=`ls /home/aouakas/Bureau/ALL/*`
+for i in $liste ;do
+echo `stat -c %y $i` >>"$i"
+done
+

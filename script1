@@ -1,0 +1,25 @@
+#!/bin/bash
+
+echo  ""la liste des fichier qui sont en lecture dans le repertoire etc""
+
+liste=`ls /etc`
+#echo $liste
+
+#stat=`stat -c %y $i`
+
+for i in $liste ; do
+         if [ -r /$i ]; then
+		 echo "$i"
+		# "->" ` stat -c %y /home/aouakas/Bureau/$i `
+         fi
+done
+
+
+echo  "la liste des fichier qui sont en ecriture dans le repertoire etc"
+
+for i in $liste ; do
+         if [  -r/etc/$i ]; then
+                echo $i
+	 fi
+done
+

@@ -1,0 +1,22 @@
+
+echo "----creation de la cle ssh-----" 
+
+
+ssh-keygen -t rsa
+
+echo "copie de la cle ssh"
+
+ssh-copy-id $1@$2 -f
+
+
+echo "connection sur la  $1 "
+
+ssh $1@$2 
+ 
+
+
+
+
+
+
+

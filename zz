@@ -1,0 +1,11 @@
+echo "la liste des fichier qui sont en ecriture dans le bureau"
+
+for i in $liste ; do
+        if [ -w /home/aouakas/Bureau/$i ]; then
+                echo $i
+        fi
+done
+
+2021-04-21 16:40:00.243107249 +0200
+2021-04-22 15:29:28.887002575 +0200
+2021-04-22 15:30:25.590634013 +0200

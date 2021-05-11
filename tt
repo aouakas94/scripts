@@ -1,0 +1,32 @@
+#!/bin/bash
+# etape 1 : verifier le nombre de parametres
+# ssh $1@$2 << end w end
+
+if test $#=!4 ; then
+	
+        echo "veuillez entrer tout les arguments (user ip mdp port)"
+	#echo "argument present"
+	 ping -c2 $2 
+      if test $? = 1 ; then 	
+     
+        echo "pas de connection "
+      fi
+
+
+	#echo w | sshpass -p $3 ssh $1@$2 -p $4 
+else
+	
+                    echo w | sshpass -p $3 ssh $1@$2 -p $4
+
+        exit
+fi
+
+
+#if [ $? -eq 0 ] ; then
+
+ #                   echo "connection passé"
+
+  #                  echo w | sshpass -p $3 ssh $1@$2 -p $4
+
+   #             fi
+
