@@ -1,8 +1,17 @@
-echo bonjour 
+#!/bin/bash
+
+#nom:cherifi
+#prenom:aouakas
+
+echo "bonjour"
  
 liste=`ls /home/aouakas/Bureau/ALL/*`
+
 for i in $liste ;do
+
 #echo `stat -c %y $i` >>"$i"
 echo "ce fichier a ete modifie le: "`date -r $i` >>"$i"
 done
 
+#on peut aussi utiliser cette syntaxe 
+#echo `stat -c %y $i` >>"$i"
