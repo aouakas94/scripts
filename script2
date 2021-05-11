@@ -1,8 +1,8 @@
 #!/bin/bash
- 
+number='^[0-9]+$'  
 for (( i=0 ;  i<=10 ; i++ ));  do
 	
-if ! [[ $1 =~ "^[0-9]+$"  ]]; then
+if  ! [[ $1 =~ $number ]] ; then
 
 	echo "veuillez entrer un nombre entier please!" >&2; exit 1
 else

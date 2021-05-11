@@ -1,32 +1,45 @@
 #!/bin/bash
-# etape 1 : verifier le nombre de parametres
-# ssh $1@$2 << end w end
 
-if test $#=!4 ; then
-	
-        echo "veuillez entrer tout les arguments (user ip mdp port)"
-	#echo "argument present"
-	 ping -c2 $2 
-      if test $? = 1 ; then 	
-     
-        echo "pas de connection "
-      fi
+#nom: cherifi
+#prenom: cherifi
 
 
-	#echo w | sshpass -p $3 ssh $1@$2 -p $4 
+
+number='^[0-9]+$'
+
+#etape1 verifier le nombre de parametre
+
+if test $# -lt 4 ; then
+
+ echo "----veuillez entrer tout les arguments et respecter l'ordre (user ip mdp port)------"
+
+ exit
+
+fi
+
+#etape2: verifier si le numero de port saisie est un nombre valable
+
+if !  [[ $4 =~ $number ]]; then
+
+        echo  "veuillez saisir un numero de port valide" 
+fi
+
+#etape verfier la connexion avec la machine souhaité
+
+ ping -q -c1 $2 > /dev/null
+
+if [ $? -eq 1 ] ; then
+
+        echo "-------------- pas de connection avec $2 ------------- "
+
+
 else
-	
-                    echo w | sshpass -p $3 ssh $1@$2 -p $4
+	 echo "-------------- liste des machine qui connecté a $2 ----------" ;
+              echo w | sshpass -p $3 ssh $1@$2 -p $4 | tail -1
 
-        exit
+
+
 fi
 
 
-#if [ $? -eq 0 ] ; then
-
- #                   echo "connection passé"
-
-  #                  echo w | sshpass -p $3 ssh $1@$2 -p $4
-
-   #             fi
 
