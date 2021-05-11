@@ -1,11 +1,13 @@
+#!/bin/bash
+
 echo bonjour
 
 if [ -d /$1 ]; then
 
-      echo "chemin valide"
+      echo "le chemin saisie est un chemin valide"
 
   else
 
-      echo "chemin non valide"
+      echo "le chemin saisie n'est pas un chemin valide"
 
 fi
