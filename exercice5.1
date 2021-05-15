@@ -1,0 +1,55 @@
+#!/bin/bash
+
+#exercice5.1
+
+# nom: cherifi
+# prenom: aouakas
+# 15/05/2021
+
+
+number='^[0-9]+$'
+
+tab=($@)
+limit=$(($# / 4))
+
+#etape1 verifier le nombre de parametre
+
+for ((i=0 ; i < $limit ; i++)); do
+if  (( $# % 4 )) ; then
+
+echo "----veuillez entrer tout les arguments et respecter l'ordre (user ip mdp port)------"
+
+exit 1
+
+fi
+
+
+   if !  [[ ${tab[(4*$i)+3]} =~ $number ]]; then
+
+        echo  "veuillez saisir un numero de port valide" 
+        exit 2
+   fi
+
+ping -q -c1 ${tab[(4*$i)+1]} > /dev/null
+
+   if [[ $? -eq 1 ]] ; then
+   echo "-------------- pas de connection avec ${tab[(4*$i)+1]} ------------- "
+
+   exit
+
+   else
+
+
+      for ((i=0 ; i < $limit ; i++)); do
+
+
+         echo "-------------- liste des machine qui connecté a ${tab[(4*$i)+1]} ----------" ;
+echo w | sshpass -p ${tab[(4*$i)+2]}   ssh ${tab[(4*$i)+0]}@${tab[(4*$i)+1]} -p ${tab[(4*$i)+3]} | grep pts
+
+
+     done
+
+   fi
+done 
+
+

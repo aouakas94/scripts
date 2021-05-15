@@ -1,0 +1,25 @@
+#!/bin/bash
+#tableau
+
+# nom: cherifi
+# prenom: aouakas
+# 15/05/2021
+
+
+tab=($@)
+
+for ((i=0 ; i < $# ; i++)); do
+ping -q -c4 ${tab[$i]} > /dev/null
+
+   if [[ $? -eq 1 ]] ; then
+   echo "-------------- pas de connection avec ${tab[$i]}  ------------- "
+  
+else
+echo "------la liste des utilisateurs conecté sur ${tab[$i]} --------------" ;
+echo w | ssh ${tab[$i]}  | grep pts
+echo "        "
+
+   fi
+done
+
+
