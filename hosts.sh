@@ -1,6 +1,6 @@
 #!/bin/bash
 liste=()
-liste=`cat hosts`
+liste=`cat /home/aouakas/Bureau/scripts/hosts`
 
 
 for i in $liste;do
