@@ -1,18 +1,10 @@
 #!/bin/bash
-gethosts()
-{
-
 liste=()
-while IFS=$'\n' read hosts  ;do
-liste+="${hosts}"
+liste=`cat hosts`
 
-done < hosts
 
-echo ${liste[*]}
+for i in $liste;do
 
-}
-
-for i in $(gethosts); do
    if ! [[ $# = 1  ]]; then
    echo "veuillez sisair la commande a executer please!"
    exit 
@@ -31,4 +23,24 @@ echo "------la liste des utilisateurs conecté sur $i --------------" ;
 
              echo "   "
      fi
+done
+
+
+exit
+
+gethost()
+{
+
+liste=()
+while IFS=$'\n' read hosts  ;do
+liste+="${hosts}"
+
+done < hosts
+
+echo ${liste[*]}
+
+}
+
+for i in $(gethosts); do
+echo $i
 done
