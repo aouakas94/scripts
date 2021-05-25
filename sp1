@@ -1,0 +1,11 @@
+#!/bin/bash
+
+liste= ls -l $1
+
+for i in $liste ; do
+         if test [[  -x /$i ]]; then
+               echo $i
+	  
+         fi
+done
+

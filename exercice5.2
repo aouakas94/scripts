@@ -1,5 +1,5 @@
 #!/bin/bash
-#tableau
+#exercice5.2
 
 # nom: cherifi
 # prenom: aouakas
@@ -7,18 +7,17 @@
 
 
 tab=($@)
-
+echo "    "
 for ((i=0 ; i < $# ; i++)); do
 ping -q -c4 ${tab[$i]} > /dev/null
 
    if [[ $? -eq 1 ]] ; then
    echo "-------------- pas de connection avec ${tab[$i]}  ------------- "
-  
+  echo "      "
 else
 echo "------la liste des utilisateurs conecté sur ${tab[$i]} --------------" ;
-echo w | ssh ${tab[$i]}  | grep pts
-echo "        "
-
+echo w | ssh ${tab[$i]} 
+echo "   "
    fi
 done
 

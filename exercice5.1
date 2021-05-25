@@ -27,7 +27,7 @@ exit 1
     if ! [[ ${tab[(4*$i)+3]} =~ $number ]]; then
 
         echo  "veuillez saisir un numero de port valide pour ${tab[(4*$i)+1]}" 
-        exit 2
+       
     fi
 
 ping -q -c1 ${tab[(4*$i)+1]} > /dev/null
@@ -35,13 +35,12 @@ ping -q -c1 ${tab[(4*$i)+1]} > /dev/null
     if [[ $? -eq 1 ]] ; then
    echo "-------------- pas de connection avec ${tab[(4*$i)+1]} ------------- "
 
-   exit
 
    else
-
+echo "       "
          echo "-------------- liste des machine qui connecté a ${tab[(4*$i)+1]} ----------" ;
 echo w | sshpass -p ${tab[(4*$i)+2]}   ssh ${tab[(4*$i)+0]}@${tab[(4*$i)+1]} -p ${tab[(4*$i)+3]} | grep pts
-
+echo "                          "
 
 
    fi
