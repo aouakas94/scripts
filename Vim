@@ -1,0 +1,37 @@
+La commande `vi` (ou son amélioration, `vim`, qui signifie "Vi IMproved") est un éditeur de texte très populaire sous Linux et Unix. Voici quelques commandes de base pour utiliser `vi` (ou `vim`).
+
+### Ouvrir un fichier avec `vi` :
+```bash
+vi nom_du_fichier
+```
+
+### Modes dans `vi` :
+- **Mode normal** : Le mode par défaut lorsque vous ouvrez `vi`. Vous pouvez naviguer dans le fichier, supprimer du texte, copier/coller, etc.
+- **Mode insertion** : Permet d'insérer du texte. Pour entrer dans ce mode, appuyez sur la touche `i`.
+- **Mode commande** : Utilisé pour sauvegarder, quitter, etc. Pour entrer dans ce mode, appuyez sur `:` depuis le mode normal.
+
+### Commandes de base dans `vi` :
+
+#### En mode normal (après avoir ouvert `vi`) :
+- `i` : Entrer en mode insertion.
+- `Esc` : Retourner en mode normal depuis n'importe quel autre mode.
+- `:w` : Sauvegarder le fichier.
+- `:q` : Quitter `vi`.
+- `:wq` ou `ZZ` : Sauvegarder et quitter.
+- `:q!` : Quitter sans sauvegarder.
+- `dd` : Supprimer la ligne courante.
+- `yy` : Copier la ligne courante.
+- `p` : Coller après la ligne courante.
+- `/mot` : Rechercher un mot dans le fichier.
+- `u` : Annuler la dernière action.
+- `x` : Supprimer un caractère sous le curseur.
+
+#### Navigation :
+- `h` : Déplacer le curseur d'un caractère vers la gauche.
+- `j` : Déplacer le curseur d'une ligne vers le bas.
+- `k` : Déplacer le curseur d'une ligne vers le haut.
+- `l` : Déplacer le curseur d'un caractère vers la droite.
+- `gg` : Aller au début du fichier.
+- `G` : Aller à la fin du fichier.
+
+`vi` est un éditeur puissant, mais il peut prendre un peu de temps à maîtriser. Cependant, ces commandes de base devraient vous permettre de commencer à l'utiliser efficacement.
