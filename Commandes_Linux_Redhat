@@ -1,0 +1,164 @@
+Les commandes Linux sont des instructions utilisées dans le terminal pour interagir avec le système d'exploitation. Voici une liste de commandes courantes et leurs utilisations :
+
+### Commandes de base
+1. **ls** : Liste les fichiers et répertoires dans un répertoire.
+   ```bash
+   ls
+   ```
+
+2. **cd** : Change le répertoire courant.
+   ```bash
+   cd /chemin/vers/repertoire
+   ```
+
+3. **pwd** : Affiche le chemin complet du répertoire courant.
+   ```bash
+   pwd
+   ```
+
+4. **mkdir** : Crée un nouveau répertoire.
+   ```bash
+   mkdir nom_du_repertoire
+   ```
+
+5. **rmdir** : Supprime un répertoire vide.
+   ```bash
+   rmdir nom_du_repertoire
+   ```
+
+6. **rm** : Supprime des fichiers ou des répertoires.
+   ```bash
+   rm nom_du_fichier
+   rm -r nom_du_repertoire  # Pour supprimer un répertoire et son contenu
+   ```
+
+7. **cp** : Copie des fichiers ou des répertoires.
+   ```bash
+   cp source destination
+   cp -r source destination  # Pour copier un répertoire et son contenu
+   ```
+
+8. **mv** : Déplace ou renomme des fichiers ou des répertoires.
+   ```bash
+   mv source destination
+   ```
+
+9. **touch** : Crée un fichier vide ou met à jour l'horodatage d'un fichier.
+   ```bash
+   touch nom_du_fichier
+   ```
+
+10. **cat** : Affiche le contenu d'un fichier.
+    ```bash
+    cat nom_du_fichier
+    ```
+
+11. **nano** ou **vi** : Éditeurs de texte en ligne de commande.
+    ```bash
+    nano nom_du_fichier
+    vi nom_du_fichier
+    ```
+
+### Gestion des processus
+1. **ps** : Affiche les processus en cours d'exécution.
+   ```bash
+   ps
+   ps aux  # Affiche tous les processus avec des détails
+   ```
+
+2. **top** : Affiche les processus en cours et l'utilisation des ressources système.
+   ```bash
+   top
+   ```
+
+3. **kill** : Termine un processus.
+   ```bash
+   kill PID
+   kill -9 PID  # Force la terminaison du processus
+   ```
+
+4. **htop** : Une version interactive et plus avancée de `top`.
+   ```bash
+   htop
+   ```
+
+### Gestion des fichiers et des répertoires
+1. **find** : Recherche des fichiers et des répertoires selon des critères.
+   ```bash
+   find /chemin -name "nom_du_fichier"
+   ```
+
+2. **grep** : Recherche des chaînes de texte dans les fichiers.
+   ```bash
+   grep "chaine_de_texte" nom_du_fichier
+   grep -r "chaine_de_texte" /chemin  # Recherche récursive
+   ```
+
+3. **tar** : Archive des fichiers.
+   ```bash
+   tar -cvf archive.tar fichier1 fichier2
+   tar -xvf archive.tar  # Extraction
+   ```
+
+4. **zip** et **unzip** : Compression et décompression de fichiers.
+   ```bash
+   zip archive.zip fichier1 fichier2
+   unzip archive.zip
+   ```
+
+### Informations système
+1. **df** : Affiche l'espace disque utilisé et disponible.
+   ```bash
+   df -h
+   ```
+
+2. **du** : Affiche l'utilisation de l'espace disque par les fichiers et les répertoires.
+   ```bash
+   du -h chemin
+   ```
+
+3. **free** : Affiche l'utilisation de la mémoire.
+   ```bash
+   free -h
+   ```
+
+4. **uname** : Affiche des informations sur le système.
+   ```bash
+   uname -a
+   ```
+
+5. **uptime** : Affiche depuis combien de temps le système fonctionne.
+   ```bash
+   uptime
+   ```
+
+### Réseaux
+1. **ifconfig** : Configure les interfaces réseau.
+   ```bash
+   ifconfig
+   ```
+
+2. **ping** : Teste la connectivité réseau vers une adresse IP ou un nom de domaine.
+   ```bash
+   ping exemple.com
+   ```
+
+3. **netstat** : Affiche les connexions réseau, les tables de routage, etc.
+   ```bash
+   netstat -tuln
+   ```
+
+4. **ssh** : Se connecte à un hôte distant via SSH.
+   ```bash
+   ssh utilisateur@hote
+   ```
+
+5. **scp** : Copie des fichiers entre hôtes via SSH.
+   ```bash
+   scp fichier utilisateur@hote:/chemin/vers/destination
+   ```
+
+Ces commandes constituent un point de départ pour travailler avec Linux. Chaque commande possède de nombreuses options supplémentaires pour affiner son comportement, que vous pouvez découvrir dans les pages de manuel (man).
+```bash
+man nom_de_la_commande
+```
