@@ -1,0 +1,73 @@
+Voici une liste complète des commandes Git les plus utilisées, organisées par catégorie :
+
+### 1. **Configuration**
+- `git config --global user.name "Nom"` : Configurer le nom d'utilisateur global.
+- `git config --global user.email "email@example.com"` : Configurer l'adresse e-mail globale.
+- `git config --list` : Afficher la configuration actuelle.
+
+### 2. **Initialisation d'un dépôt**
+- `git init` : Initialiser un nouveau dépôt Git.
+- `git clone <url>` : Cloner un dépôt distant.
+
+### 3. **État et informations**
+- `git status` : Afficher l'état actuel du dépôt (fichiers modifiés, en attente, etc.).
+- `git log` : Afficher l'historique des commits.
+- `git show <commit>` : Afficher les détails d’un commit particulier.
+
+### 4. **Ajout et suppression de fichiers**
+- `git add <fichier>` : Ajouter un fichier spécifique à l'index (staging area).
+- `git add .` : Ajouter tous les fichiers modifiés ou nouveaux.
+- `git rm <fichier>` : Supprimer un fichier du répertoire de travail et du suivi Git.
+- `git mv <ancien_nom> <nouveau_nom>` : Renommer un fichier suivi par Git.
+
+### 5. **Commit**
+- `git commit -m "message"` : Valider les modifications avec un message.
+- `git commit -a -m "message"` : Valider toutes les modifications (ajoute automatiquement les fichiers modifiés).
+- `git commit --amend` : Modifier le dernier commit (utile pour changer le message ou ajouter des fichiers oubliés).
+
+### 6. **Branches**
+- `git branch` : Lister toutes les branches.
+- `git branch <nom>` : Créer une nouvelle branche.
+- `git checkout <branche>` : Passer à une branche existante.
+- `git checkout -b <nouvelle_branche>` : Créer et basculer vers une nouvelle branche.
+- `git merge <branche>` : Fusionner une branche dans la branche courante.
+- `git branch -d <branche>` : Supprimer une branche locale.
+  
+### 7. **Synchronisation avec un dépôt distant**
+- `git remote add <nom> <url>` : Ajouter un dépôt distant.
+- `git fetch` : Récupérer les modifications depuis un dépôt distant sans les intégrer.
+- `git pull` : Récupérer et fusionner les modifications d’un dépôt distant.
+- `git push` : Envoyer les commits locaux vers un dépôt distant.
+- `git push -u origin <branche>` : Pousser la branche courante et la définir comme branche suivie par défaut.
+
+### 8. **Réinitialisation et annulation**
+- `git reset <fichier>` : Désindexer un fichier sans le supprimer.
+- `git reset --hard` : Réinitialiser l'index et l'arborescence de travail à l'état du dernier commit.
+- `git reset --soft <commit>` : Réinitialiser à un commit précédent tout en conservant les modifications dans l'index.
+- `git revert <commit>` : Créer un commit qui annule les changements d’un commit précédent.
+
+### 9. **Tags**
+- `git tag` : Lister les tags.
+- `git tag <nom>` : Créer un tag léger.
+- `git tag -a <nom> -m "message"` : Créer un tag annoté.
+- `git push origin <tag>` : Pousser un tag vers le dépôt distant.
+
+### 10. **Stash (sauvegarde temporaire)**
+- `git stash` : Enregistrer les modifications en attente sans les valider.
+- `git stash apply` : Réappliquer les modifications stockées dans le stash.
+- `git stash pop` : Réappliquer et supprimer les modifications du stash.
+
+### 11. **Différences**
+- `git diff` : Voir les modifications non indexées.
+- `git diff --staged` : Voir les différences entre l’index et le dernier commit.
+- `git diff <branche1>..<branche2>` : Comparer deux branches.
+
+### 12. **Référentiels**
+- `git reflog` : Voir l'historique des commandes Git.
+- `git log --oneline` : Afficher l’historique des commits sous forme abrégée.
+  
+### 13. **Sous-modules**
+- `git submodule add <url>` : Ajouter un sous-module.
+- `git submodule update --init` : Initialiser et mettre à jour les sous-modules.
+
+Cette liste couvre les commandes Git les plus courantes et utiles dans divers scénarios.
