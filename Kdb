@@ -1,0 +1,45 @@
+Pour créer un fichier **KDB** (Key Database) à partir d'un certificat **CRT** et d'une clé privée **.key**, vous pouvez utiliser l'outil **iKeyman** d'IBM ou des commandes OpenSSL, en fonction des outils à votre disposition. Voici les étapes générales pour chaque méthode :
+
+### Méthode 1 : Utilisation d’iKeyman (IBM)
+1. **Ouvrir IBM Key Management Tool (iKeyman)** :
+   - Lancez l'outil iKeyman.
+
+2. **Créer une nouvelle base de données KDB** :
+   - Dans iKeyman, allez dans `Key Database File` > `New`.
+   - Choisissez un nom de fichier et un emplacement pour votre fichier KDB.
+   - Sélectionnez le type "CMS" et cliquez sur "OK".
+   - Entrez un mot de passe pour la base de données de clés et sauvegardez-la.
+
+3. **Ajouter le certificat** :
+   - Dans iKeyman, allez dans `Signer Certificates` > `Add`.
+   - Sélectionnez votre fichier de certificat **.crt** et ajoutez-le.
+
+4. **Ajouter la clé privée** :
+   - Retournez à l'onglet des clés et utilisez l'option pour importer la clé privée correspondante **.key**.
+
+### Méthode 2 : Utilisation d'OpenSSL et de `gskcapicmd`
+
+Si vous n'avez pas iKeyman, vous pouvez créer le fichier KDB en utilisant l'outil en ligne de commande `gskcapicmd` (disponible dans certaines distributions IBM) après avoir préparé votre certificat et clé avec OpenSSL.
+
+1. **Convertir le certificat et la clé au format PKCS12** (p12/pfx) :
+
+   Utilisez OpenSSL pour combiner le fichier CRT et la clé privée dans un fichier P12 :
+   ```bash
+   openssl pkcs12 -export -in certificat.crt -inkey clé.key -out fichier.p12
+   ```
+
+2. **Créer la base KDB avec `gskcapicmd`** :
+   Une fois le fichier P12 créé, vous pouvez utiliser la commande `gskcapicmd` pour importer le fichier PKCS12 dans un fichier KDB :
+   ```bash
+   gskcapicmd -keydb -create -db certificat.kdb -pw motDePasse -stash
+   ```
+
+3. **Importer le fichier PKCS12 dans le KDB** :
+   ```bash
+   gskcapicmd -cert -import -file fichier.p12 -db certificat.kdb -pw motDePasse -target target.kdb
+   ```
+
+Cela va associer votre certificat à la clé dans le fichier KDB.
+
+### Conclusion
+Ces deux méthodes permettent de créer un fichier KDB avec votre certificat et clé privée. Si vous disposez de l’outil IBM Key Management (iKeyman), c’est la méthode la plus simple. Sinon, l’utilisation d’OpenSSL et de `gskcapicmd` vous permettra également d’obtenir un fichier KDB fonctionnel.
