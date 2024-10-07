@@ -1,0 +1,52 @@
+La commande ln sur Red Hat Linux (et autres distributions basées sur Linux) permet de créer des liens entre fichiers ou répertoires. Un lien est un pointeur vers un fichier ou un répertoire. Il existe deux types principaux de liens : les liens symboliques et les liens physiques (ou liens durs).
+
+Syntaxe de base :
+
+ln [OPTION]... CIBLE [LIEN]
+
+	•	CIBLE : le fichier ou répertoire que vous voulez lier.
+	•	LIEN : le nom du lien que vous voulez créer (facultatif si vous voulez créer un lien dans le répertoire actuel avec le même nom).
+
+Types de liens :
+
+	1.	Lien physique (hard link) :
+Un lien physique pointe directement vers les données d’un fichier. Si vous modifiez le fichier via l’un des liens physiques, les autres refléteront les changements car ils partagent les mêmes données.
+
+ln fichier_original lien_dur
+
+
+	2.	Lien symbolique (soft link ou symlink) :
+Un lien symbolique est un pointeur vers le nom du fichier. Si le fichier original est supprimé, le lien symbolique devient invalide (brisé).
+
+ln -s fichier_original lien_symbolique
+
+
+
+Options courantes pour ln :
+
+	•	-s : Crée un lien symbolique au lieu d’un lien physique.
+	•	-f : Force la suppression d’un lien existant avant de créer le nouveau lien.
+	•	-i : Demande confirmation avant de remplacer un lien existant.
+	•	-v : Mode verbeux, affiche des informations sur ce qui est fait.
+	•	-n : Traite un lien symbolique vers un répertoire comme un fichier ordinaire lors du remplacement.
+	•	-r : Utilise des chemins relatifs pour les liens symboliques, si possible.
+
+Exemples pratiques :
+
+	1.	Créer un lien symbolique :
+
+ln -s /chemin/vers/fichier_original /chemin/vers/lien_symbolique
+
+
+	2.	Créer un lien physique :
+
+ln /chemin/vers/fichier_original /chemin/vers/lien_dur
+
+
+	3.	Forcer la création d’un lien symbolique même si un fichier de destination existe déjà :
+
+ln -sf /chemin/vers/fichier_original /chemin/vers/lien_symbolique
+
+
+
+Ces commandes sont particulièrement utiles pour gérer des configurations, partager des fichiers sans dupliquer les données, ou encore pour organiser des systèmes de fichiers complexes.
