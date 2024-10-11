@@ -1,0 +1,25 @@
+Pour générer un fichier JKS (Java KeyStore), il te faut un certificat ou une clé privée. Voici les étapes pour créer un JKS avec l’outil keytool (fourni avec le JDK) :
+
+	1.	Créer une nouvelle paire de clés :
+Si tu n’as pas encore de certificat, tu peux créer une paire de clés directement avec keytool :
+
+keytool -genkeypair -alias monalias -keyalg RSA -keysize 2048 -validity 365 -keystore monkeystore.jks
+
+	•	monalias : le nom de l’alias de ta clé.
+	•	monkeystore.jks : le nom du fichier JKS à créer.
+	•	Tu devras fournir un mot de passe pour protéger le JKS et les informations de ton organisation.
+
+	2.	Importer un certificat :
+Si tu as déjà un certificat et que tu veux l’ajouter au fichier JKS, utilise cette commande pour l’importer :
+
+keytool -importcert -file moncertificat.cer -alias monalias -keystore monkeystore.jks
+
+
+	3.	Vérification du JKS :
+Pour vérifier le contenu de ton fichier JKS :
+
+keytool -list -v -keystore monkeystore.jks
+
+
+
+Ces commandes te permettront de générer ou de manipuler un fichier JKS. Est-ce que tu as besoin d’aide sur une étape spécifique ou un cas particulier ?
