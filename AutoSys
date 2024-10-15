@@ -1,0 +1,116 @@
+Voici un exemple complet d’une box Autosys en JIL (Job Information Language) qui illustre presque toutes les options disponibles pour la définition des jobs et de la box. Cela inclut divers paramètres que vous pouvez configurer pour un contrôle précis des jobs et des box.
+
+/* Définition de la box principale */
+insert_job: my_full_box
+job_type: b
+box_status: ACTIVE
+owner: user_name@company.com
+permission: gx,wx
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr
+start_times: "08:00, 12:00"
+run_window: "08:00-18:00"
+timezone: UTC
+max_run_alarm: 60
+alarm_if_fail: 1
+box_terminator: 1
+term_run_time: 120
+description: "Ceci est un exemple complet d'une box Autosys"
+notification_emailaddress: team@company.com
+notification_msg: "Box job has failed or completed abnormally"
+std_out_file: /path/to/log/my_full_box.out
+std_err_file: /path/to/log/my_full_box.err
+
+/* Premier job dans la box */
+insert_job: job1_in_box
+job_type: c
+box_name: my_full_box
+command: /path/to/command1.sh
+machine: machine_name
+owner: user_name@company.com
+permission: gx,wx
+condition: s(job2_in_box) && f(job3_in_box)
+date_conditions: 1
+days_of_week: mo,tu,we
+start_times: "09:00"
+run_window: "09:00-17:00"
+description: "Job 1 dépend de la réussite de job2 et l'échec de job3"
+std_out_file: /path/to/log/job1_in_box.out
+std_err_file: /path/to/log/job1_in_box.err
+alarm_if_fail: 1
+max_run_alarm: 30
+min_run_alarm: 10
+notification_emailaddress: support@company.com
+notification_msg: "Job 1 dans la box a échoué"
+timezone: UTC
+
+/* Deuxième job dans la box */
+insert_job: job2_in_box
+job_type: c
+box_name: my_full_box
+command: /path/to/command2.sh
+machine: machine_name
+owner: user_name@company.com
+permission: gx,wx
+condition: s(job3_in_box)
+date_conditions: 1
+start_times: "10:00"
+run_window: "10:00-16:00"
+description: "Job 2 dépend de la réussite de job3"
+std_out_file: /path/to/log/job2_in_box.out
+std_err_file: /path/to/log/job2_in_box.err
+alarm_if_fail: 1
+max_run_alarm: 45
+notification_emailaddress: alert@company.com
+notification_msg: "Job 2 a échoué"
+timezone: UTC
+
+/* Troisième job dans la box */
+insert_job: job3_in_box
+job_type: c
+box_name: my_full_box
+command: /path/to/command3.sh
+machine: machine_name
+owner: user_name@company.com
+permission: gx,wx
+date_conditions: 1
+days_of_week: tu,we,th
+start_times: "11:00"
+run_window: "11:00-15:00"
+description: "Job 3 s'exécute indépendamment"
+std_out_file: /path/to/log/job3_in_box.out
+std_err_file: /path/to/log/job3_in_box.err
+alarm_if_fail: 1
+notification_emailaddress: ops@company.com
+notification_msg: "Job 3 a échoué"
+timezone: UTC
+
+Explication des options :
+
+Box
+
+	•	job_type: b: Définit que ce job est une box.
+	•	box_status: ACTIVE: La box est active et les jobs à l’intérieur peuvent s’exécuter.
+	•	owner: Le propriétaire du job ou de la box.
+	•	permission: Droits d’accès aux jobs (lecture/écriture/exécution).
+	•	date_conditions: Active les conditions de date.
+	•	days_of_week: Jours spécifiques où la box ou le job peut s’exécuter (lundi à vendredi dans cet exemple).
+	•	start_times: Heures spécifiques pour démarrer la box ou le job.
+	•	run_window: Période pendant laquelle la box ou le job peut être exécuté.
+	•	timezone: Définit le fuseau horaire pour la planification.
+	•	max_run_alarm: Déclenche une alarme si le job dépasse le temps d’exécution spécifié (en minutes).
+	•	alarm_if_fail: Envoie une alerte en cas d’échec du job.
+	•	box_terminator: Arrête tous les jobs de la box si un job échoue.
+	•	term_run_time: Temps limite pour la durée d’exécution de la box (en minutes).
+	•	notification_emailaddress: Adresse e-mail pour les notifications en cas d’erreur ou d’échec.
+	•	std_out_file et std_err_file: Chemins vers les fichiers de sortie standard et d’erreur.
+
+Jobs dans la box
+
+	•	box_name: Associe le job à une box.
+	•	condition: Spécifie la condition d’exécution du job, ici s(job2_in_box) signifie que job1_in_box s’exécute après la réussite de job2_in_box et l’échec de job3_in_box (f(job3_in_box)).
+	•	command: Commande à exécuter.
+	•	machine: Machine sur laquelle le job sera exécuté.
+	•	start_times et run_window: Similaires aux paramètres de la box, mais appliqués aux jobs individuels.
+
+Cet exemple montre comment configurer une box avec des jobs complexes, en utilisant des options avancées telles que les conditions entre les jobs, les fenêtres de temps d’exécution, les notifications et les alarmes.
