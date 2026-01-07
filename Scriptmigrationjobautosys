@@ -62,3 +62,51 @@ awk -F'box_name:[[:space:]]*' '
     echo "" >> "$OUTPUT_FILE"
 
 done
+
+
+#!/bin/bash
+
+INPUT_FILE="jobs.csv"
+OUTPUT_FILE="resultat_boxname.txt"
+
+> "$OUTPUT_FILE"
+
+while IFS=',' read -r job reste
+do
+    # Ignorer les lignes vides
+    [ -z "$job" ] && continue
+
+    # Exécuter autorep et extraire uniquement box_name
+    autorep -j "$job" -q \
+        | grep -i "box_name" \
+        | awk -F':' '{print "box_name: "$2}' \
+        >> "$OUTPUT_FILE"
+
+done < "$INPUT_FILE"
+
+
+
+
+#!/bin/bash
+
+INPUT_FILE="boxname_final.txt"
+OUTPUT_DIR="jil_files"
+
+mkdir -p "$OUTPUT_DIR"
+
+while read -r line
+do
+    # Ignorer lignes vides
+    [ -z "$line" ] && continue
+
+    # Extraire le nom de la box (après :)
+    box_name=$(echo "$line" | awk -F':' '{gsub(/^[ \t]+/, "", $2); print $2}')
+
+    # Sécurité si box_name vide
+    [ -z "$box_name" ] && continue
+
+    # Générer le fichier .jil
+    autorep -j "$box_name" -q > "$OUTPUT_DIR/${box_name}.jil"
+
+done < "$INPUT_FILE"
+
