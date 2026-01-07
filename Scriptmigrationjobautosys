@@ -110,3 +110,20 @@ do
 
 done < "$INPUT_FILE"
 
+#!/bin/bash
+
+input_file="liste_elements.txt"
+
+while IFS= read -r element; do
+    # On saute les lignes vides
+    [ -z "$element" ] && continue
+
+    output_file="${element}.jil"
+
+    autorep -j "$element" -q \
+        | grep -m 1 "box_name" \
+        > "$output_file"
+
+done < "$input_file"
+
+
