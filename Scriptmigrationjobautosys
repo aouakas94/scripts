@@ -35,3 +35,30 @@ grep "box_name" "$INPUT_FILE" | cut -d'=' -f2 | while IFS= read -r box; do
     echo "" >> "$OUTPUT_FILE"
 
 done
+
+
+
+
+#!/bin/bash
+
+INPUT_FILE="output.txt"
+OUTPUT_FILE="output_lsjob_box.txt"
+
+# Vider le fichier de sortie
+> "$OUTPUT_FILE"
+
+awk -F'box_name:[[:space:]]*' '
+    NF > 1 {
+        box = $2
+        sub(/ *$/, "", box)   # supprimer les espaces en fin de ligne
+        print box
+    }
+' "$INPUT_FILE" | while IFS= read -r box; do
+
+    [ -z "$box" ] && continue
+
+    echo "### Résultat pour box_name : $box" >> "$OUTPUT_FILE"
+    lsjob "$box" >> "$OUTPUT_FILE"
+    echo "" >> "$OUTPUT_FILE"
+
+done
