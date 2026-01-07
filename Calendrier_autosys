@@ -1,0 +1,57 @@
+#!/bin/ksh
+
+OUTPUT_FILE="samedis_pairs.txt"
+> $OUTPUT_FILE
+
+for year in $(seq 2026 2030); do
+    for month in $(seq -w 1 12); do
+        days_in_month=$(date -d "$year-$month-01 +1 month -1 day" +%d)
+
+        for day in $(seq -w 2 2 $days_in_month); do
+            # %u : 6 = samedi
+            weekday=$(date -d "$year-$month-$day" +%u 2>/dev/null)
+
+            if [ "$weekday" -eq 6 ]; then
+                echo "$month/$day/$year 00:00:00" >> $OUTPUT_FILE
+            fi
+        done
+    done
+done
+
+echo "Samedis pairs générés dans $OUTPUT_FILE"
+
+
+#!/bin/ksh
+
+OUTPUT_FILE="samedis_impairs.txt"
+> $OUTPUT_FILE
+
+for year in $(seq 2026 2030); do
+    for month in $(seq -w 1 12); do
+        days_in_month=$(date -d "$year-$month-01 +1 month -1 day" +%d)
+
+        for day in $(seq -w 1 2 $days_in_month); do
+            # %u : 6 = samedi
+            weekday=$(date -d "$year-$month-$day" +%u 2>/dev/null)
+
+            if [ "$weekday" -eq 6 ]; then
+                echo "$month/$day/$year 00:00:00" >> $OUTPUT_FILE
+            fi
+        done
+    done
+done
+
+echo "Samedis impairs générés dans $OUTPUT_FILE"
+
+
+insert_calendar: CAL_SAMEDIS_PAIRS
+description: "Calendrier exécuté uniquement les samedis dont le jour du mois est pair"
+days_of_week: SA
+days_of_month: 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30
+
+
+
+insert_calendar: CAL_JOURS_PAIRS
+description: "Calendrier exécuté uniquement les jours pairs"
+days_of_month: 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30
+
