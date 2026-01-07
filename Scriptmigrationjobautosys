@@ -1,0 +1,37 @@
+#!/bin/bash
+
+INPUT_FILE="input.txt"
+OUTPUT_FILE="output.txt"
+
+# Vider le fichier de sortie au début
+> "$OUTPUT_FILE"
+
+while IFS= read -r element; do
+    # Ignorer les lignes vides
+    [ -z "$element" ] && continue
+
+    echo "### Résultat pour : $element" >> "$OUTPUT_FILE"
+    lsjob "$element" -q | grep "box_name" >> "$OUTPUT_FILE"
+    echo "" >> "$OUTPUT_FILE"
+
+done < "$INPUT_FILE"
+
+
+
+#!/bin/bash
+
+INPUT_FILE="output.txt"
+OUTPUT_FILE="output_lsjob_box.txt"
+
+# Vider le fichier de sortie
+> "$OUTPUT_FILE"
+
+# Extraire uniquement les valeurs de box_name
+grep "box_name" "$INPUT_FILE" | cut -d'=' -f2 | while IFS= read -r box; do
+    [ -z "$box" ] && continue
+
+    echo "### Résultat pour box_name : $box" >> "$OUTPUT_FILE"
+    lsjob "$box" >> "$OUTPUT_FILE"
+    echo "" >> "$OUTPUT_FILE"
+
+done
