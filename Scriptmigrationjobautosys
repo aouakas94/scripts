@@ -129,5 +129,22 @@ done < "$input_file"
 
 sed -i 's/^[[:space:]]*//; s/[[:space:]]*$//' fichier.txt
 
+#!/bin/bash
+
+# Vérification du paramètre
+if [ -z "$1" ]; then
+  echo "Usage: $0 <parametre>"
+  exit 1
+fi
+
+PARAM="$1"
+OUTPUT_FILE="resultat.txt"
+
+# Exécution de la commande et extraction
+cmac "$PARAM" | awk 'NR>=4 {print $1}' > "$OUTPUT_FILE"
+
+echo "Résultat enregistré dans $OUTPUT_FILE"
+
+
 
 
